@@ -70,7 +70,7 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
 ]
-THIRD_core_APPS = [
+THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "allauth",
@@ -81,15 +81,21 @@ THIRD_core_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "drf_spectacular",
+    "tailwind",
+    "django_browser_reload",
 ]
 
 LOCAL_APPS = [
     "core.users",
     # Your stuff: custom apps go here
     "core.party",
+    "core.theme",
 ]
+
+TAILWIND_APP_NAME = "core.theme"
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_core_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -143,6 +149,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 # STATIC

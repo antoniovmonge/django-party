@@ -45,6 +45,9 @@ clean-up:
 	docker-compose -f local.yml stop django
 	docker-compose -f local.yml run --rm --service-ports django
 
+stop-docs:
+	docker rm -f core_local_docs
+
 flush:
 	$(MANAGE) flush
 
