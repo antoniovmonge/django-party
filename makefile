@@ -36,13 +36,14 @@ show:
 	docker compose -f local.yml ps
 
 stop-django:
-	docker rm -f autobus_local_django
+	docker rm -f core_local_django
 
 start-django:
 	docker-compose -f local.yml run --rm --service-ports django
 
 clean-up:
-	docker-compose -f local.yml stop django
+	docker rm -f core_local_django
+	docker rm -f core_local_docs
 	docker-compose -f local.yml run --rm --service-ports django
 
 stop-docs:
@@ -59,5 +60,7 @@ initial-data:
 	$(MANAGE) loaddata initial_gifts.json
 	$(MANAGE) loaddata initial_guests.json
 
+tailwind-start:
+	docker compose -f local.yml run --rm django python manage.py tailwind start
 
 .PHONY: run migrate test shell superuser
