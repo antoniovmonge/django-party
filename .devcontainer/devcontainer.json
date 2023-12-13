@@ -1,6 +1,6 @@
 // For format details, see https://containers.dev/implementors/json_reference/
 {
-    "name": "party_dev",
+    "name": "core_dev",
     "dockerComposeFile": [
         "../local.yml"
     ],

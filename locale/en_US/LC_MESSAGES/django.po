@@ -1,6 +1,6 @@
-# Translations for the Party project
+# Translations for the core project
 # Copyright (C) 2023 Antonio Vilchez Monge
-# Antonio Vilchez Monge <antonio-vilchez-monge@party.com>, 2023.
+# Antonio Vilchez Monge <antonio-vilchez-monge@core.com>, 2023.
 #
 #, fuzzy
 msgid ""

@@ -51,7 +51,10 @@ flush:
 users:
 	$(MANAGE) create_local_user_and_admin
 
-postgres:
-	docker-compose -f local.yml exec postgres psql -U postgres -h postgres -p 5432 autobus
+initial-data:
+	$(MANAGE) loaddata initial_parties.json
+	$(MANAGE) loaddata initial_gifts.json
+	$(MANAGE) loaddata initial_guests.json
+
 
 .PHONY: run migrate test shell superuser

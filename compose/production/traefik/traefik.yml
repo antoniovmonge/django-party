@@ -22,7 +22,7 @@ certificatesResolvers:
   letsencrypt:
     # https://docs.traefik.io/master/https/acme/#lets-encrypt
     acme:
-      email: 'antonio-vilchez-monge@party.com'
+      email: 'antonio-vilchez-monge@core.com'
       storage: /etc/traefik/acme/acme.json
       # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: 'Host(`party.com`) || Host(`www.party.com`)'
+      rule: 'Host(`core.com`) || Host(`www.core.com`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -42,7 +42,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: 'Host(`party.com`)'
+      rule: 'Host(`core.com`)'
       entryPoints:
         - flower
       service: flower

@@ -9,7 +9,7 @@ python_files = [
 
 # ==== Coverage ====
 [tool.coverage.run]
-include = ["party/**"]
+include = ["core/**"]
 omit = ["*/migrations/*", "*/tests/*"]
 plugins = ["django_coverage_plugin"]
 
@@ -24,8 +24,8 @@ target-version = ['py311']
 [tool.isort]
 profile = "black"
 line_length = 119
-known_first_party = [
-    "party",
+known_first_core = [
+    "core",
     "config",
 ]
 skip = ["venv/"]

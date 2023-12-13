@@ -1,4 +1,4 @@
-# Party
+# core
 
 Django HTMX Alpine.js Tailwind
 
@@ -27,7 +27,7 @@ For convenience, you can keep your normal user logged in on Chrome and your supe
 
 Running type checks with mypy:
 
-    $ mypy party
+    $ mypy core
 
 ### Test coverage
 
@@ -52,7 +52,7 @@ This app comes with Celery.
 To run a celery worker:
 
 ```bash
-cd party
+cd core
 celery -A config.celery_app worker -l info
 ```
 
@@ -61,14 +61,14 @@ Please note: For Celery's import magic to work, it is important _where_ the cele
 To run [periodic tasks](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html), you'll need to start the celery beat scheduler service. You can start it as a standalone process:
 
 ```bash
-cd party
+cd core
 celery -A config.celery_app beat
 ```
 
 or you can embed the beat service inside a worker with the `-B` option (not recommended for production use):
 
 ```bash
-cd party
+cd core
 celery -A config.celery_app worker -B -l info
 ```
 
