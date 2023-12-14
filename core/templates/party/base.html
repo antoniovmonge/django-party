@@ -16,6 +16,8 @@
     <nav class="bg-custom-red">
       <a href="{% url 'party:page_party_list' %}"
          class="inline-block p-4 text-custom-powder-light font-dancing-script text-2xl">My parties</a>
+      <a href="{% url 'party:page_new_party' %}"
+         class="inline-block p-4 text-custom-powder-light">New party</a>
     </nav>
     <main class="container p-5 m-auto">
       {% block content %}
