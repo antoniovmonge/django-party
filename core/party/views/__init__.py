@@ -1,4 +1,4 @@
-from .gift_registry_views import GiftDetailPartial, GiftRegistryPage, GiftUpdateFormPartial
+from .gift_registry_views import GiftDetailPartial, GiftRegistryPage, GiftUpdateFormPartial, delete_gift_partial
 from .new_party_views import page_new_party, partial_check_invitation, partial_check_party_date
 from .party_detail_views import PartyDetailPage, PartyDetailPartial
 from .party_list_views import PartyListPage
@@ -13,4 +13,5 @@ __all__ = [
     "GiftRegistryPage",
     "GiftUpdateFormPartial",
     "GiftDetailPartial",
+    "delete_gift_partial",
 ]
