@@ -12,9 +12,10 @@
             defer></script>
     {% tailwind_css %}
   </head>
-  <body class="bg-custom-powder-light">
+  <body class="bg-custom-powder-light"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <nav class="bg-custom-red">
-      <a href="{% url 'home' %}"
+      <a href="{% url 'party:page_party_list' %}"
          class="inline-block p-4 text-custom-powder-light font-dancing-script text-2xl">My parties</a>
     </nav>
     <main class="container p-5 m-auto">
