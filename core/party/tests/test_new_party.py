@@ -20,7 +20,6 @@ def test_create_party(authenticated_client, create_user):
     assert Party.objects.count() == 1
 
 
-# NEW
 def test_create_party_invitation_too_short_returns_error(
     authenticated_client,
     create_user,
@@ -40,7 +39,6 @@ def test_create_party_invitation_too_short_returns_error(
     assert Party.objects.count() == 0
 
 
-# NEW
 def test_create_party_past_date_returns_error(authenticated_client, create_user):
     url = reverse("party:page_new_party")
 
@@ -56,3 +54,29 @@ def test_create_party_past_date_returns_error(authenticated_client, create_user)
     assert not response.context["form"].is_valid()
     assert "You chose a date in the past." in response.content.decode()
     assert Party.objects.count() == 0
+
+
+def test_partial_check_party_date(authenticated_client, create_user):
+    url = reverse("party:partial_check_party_date")
+    data = {
+        "party_date": "2020-06-06",
+    }
+
+    response = authenticated_client(create_user).get(url, data)
+
+    assert response.status_code == 200
+    assert 'id="id_party_date"' in response.content.decode()
+    assert "You chose a date in the past." in response.content.decode()
+
+
+def test_partial_check_invitation(authenticated_client, create_user):
+    url = reverse("party:partial_check_invitation")
+    data = {
+        "invitation": "Too short",
+    }
+
+    response = authenticated_client(create_user).get(url, data)
+
+    assert response.status_code == 200
+    assert 'id="id_invitation"' in response.content.decode()
+    assert "You really should write an invitation." in response.content.decode()
