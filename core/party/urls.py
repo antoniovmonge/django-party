@@ -15,6 +15,14 @@ party_detail_urlpatterns = [
 
 new_party_urlpatterns = [
     path("new/", views.page_new_party, name="page_new_party"),
+    path("new/check-date/", views.partial_check_party_date, name="partial_check_party_date"),
+    path("new/check-invitation/", views.partial_check_invitation, name="partial_check_invitation"),
 ]
 
-urlpatterns = list_parties_urlpatterns + party_detail_urlpatterns + new_party_urlpatterns
+gift_registry_urlpatterns = [
+    path("<uuid:party_uuid>/gifts/", views.GiftRegistryPage.as_view(), name="page_gift_registry"),
+    path("gifts/<uuid:gift_uuid>/", views.GiftDetailPartial.as_view(), name="partial_gift_detail"),
+    path("gifts/<uuid:gift_uuid>/form/", views.GiftUpdateFormPartial.as_view(), name="partial_gift_update"),
+]
+
+urlpatterns = list_parties_urlpatterns + party_detail_urlpatterns + new_party_urlpatterns + gift_registry_urlpatterns
