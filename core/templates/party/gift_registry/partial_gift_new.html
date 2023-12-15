@@ -3,11 +3,16 @@
 <form class="table-row"
       hx-post="{% url 'party:partial_new_gift' party_id %}"
       hx-target="this"
-      hx-swap="outerHTML">
+      hx-swap="outerHTML"
+      x-data
+      x-ref="new_gift_form">
   <div class="table-cell py-4 px-6 text-gray-900">{{ form.gift|as_crispy_field }}</div>
   <div class="table-cell py-4 px-6">{{ form.price|as_crispy_field }}</div>
   <div class="table-cell py-4 px-6">{{ form.link|as_crispy_field }}</div>
   <div class="table-cell py-4 px-6">
     <button type="submit">Add</button>
+  </div>
+  <div class="table-cell py-4 px-6">
+    <button type="button" @click="$refs.new_gift_form.remove()">Cancel</button>
   </div>
 </form>
