@@ -35,6 +35,7 @@ guest_list_urlpatterns = [
         views.mark_not_attending_partial,
         name="partial_mark_not_attending",
     ),
+    path("party/<uuid:party_uuid>/guests/filter/", views.filter_guests_partial, name="partial_filter_guests"),
 ]
 
 
