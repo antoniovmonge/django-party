@@ -19,6 +19,8 @@ class GuestListPage(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["party_id"] = self.kwargs["party_uuid"]
+        context["attending_num"] = self.object_list.filter(attending=True).count()
+
         return context
 
 
