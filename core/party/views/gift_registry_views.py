@@ -64,3 +64,23 @@ def delete_gift_partial(request, gift_uuid):
     gift.delete()
 
     return render(request, "party/gift_registry/partial_gift_removed.html")
+
+
+class GiftCreateFormPartial(View):
+    def get(self, request, party_uuid, *args, **kwargs):
+        form = GiftForm()
+
+        return render(request, "party/gift_registry/partial_gift_new.html", {"form": form, "party_id": party_uuid})
+
+    def post(self, request, party_uuid, *args, **kwargs):
+        party = get_object_or_404(Party, uuid=party_uuid)
+        form = GiftForm(request.POST)
+
+        if form.is_valid():
+            gift = form.save(commit=False)
+            gift.party = party
+            gift.save()
+
+            return render(request, "party/gift_registry/partial_gift_detail.html", {"gift": gift, "party": party})
+
+        return render(request, "party/gift_registry/partial_gift_new.html", {"form": form, "party_id": party_uuid})
