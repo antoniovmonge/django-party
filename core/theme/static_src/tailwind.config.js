@@ -41,14 +41,18 @@ module.exports = {
      */
     '../../**/*.py'
   ],
+  safelist: [
+        'bg-green-800'
+    ],
   theme: {
     fontFamily: {
       sans: ["Roboto"] // setting the default font-family
     },
     extend: {
       fontFamily: {
-        "roboto": ["Roboto", "sans-serif"], // making possible to use classes font-roboto and font-dancing-script
-        "dancing-script": ["Dancing Script", "cursive"],
+        "roboto": ["Roboto", "sans-serif"],
+        "dancing-script": ["Roboto", "sans-serif"],
+        // "dancing-script": ["Dancing Script", "cursive"],
       },
       // colors added:
       colors: {

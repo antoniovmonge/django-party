@@ -1,0 +1,71 @@
+{% extends 'party/base.html' %}
+
+{% block content %}
+  <div class="w-2/5 min-w-fit m-auto text-right"
+       x-data="{ guest_count: false }">
+    <template x-teleport="#guest_list_container">
+      <div class="w-2/5 p-3 text-center border-custom-blue border-2 rounded-md border-solid bg-sky-200 mx-auto mt-3"
+           x-show="guest_count">
+        <p class="text-custom-blue">
+          {{ guests|length }} guest{{ guests|pluralize }} {{ guests|pluralize:"is,are" }}
+          invited to the party.
+        </p>
+        <p class="text-custom-blue">
+          {{ attending_num }} guest{{ guests|pluralize }} {{ guests|pluralize:"is,are" }}
+          attending the party.
+        </p>
+      </div>
+    </template>
+    <button class="btn-default mb-3 text-sm"
+            x-on:click="guest_count = !guest_count"
+            x-text="guest_count ? 'Hide guest count' : 'Show guest count'"></button>
+  </div>
+  <div id="guest_list_container">
+    <div class="w-2/5 bg-white shadow-md m-auto">
+      <form hx-post="{% url 'party:partial_filter_guests' party_id %}"
+            hx-trigger="keyup delay:500ms from:#guest_search, search, change from:#attending_filter"
+            hx-target="#guests">
+        <div class="bg-gray-50 p-4 grid grid-cols-2">
+          <div>
+            <input type="search"
+                   class="p-2 bg-transparent border-x-transparent border-t-transparent border-b-gray-400 focus:border-x-transparent focus:border-t-transparent focus:border-b-gray-600 focus:ring-0"
+                   placeholder="Search guests"
+                   id="guest_search"
+                   name="guest_search" />
+          </div>
+          <div class="text-right" id="attending_filter">
+            <input type="radio" id="all" name="attending_filter" value="all" checked />
+            <label for="all" class="uppercase text-xs text-gray-600 pr-2">All</label>
+            <input type="radio" id="attending" name="attending_filter" value="attending" />
+            <label for="attending" class="uppercase text-xs text-gray-600 pr-2">Attending</label>
+            <input type="radio"
+                   id="not_attending"
+                   name="attending_filter"
+                   value="not_attending" />
+            <label for="not_attending" class="uppercase text-xs text-gray-600 pr-2">Not attending</label>
+          </div>
+        </div>
+      </form>
+      <div x-data="{ selected_all: false }">
+        <div class="pl-14 py-1 text-gray-500 border-b-gray-200 border-b">
+          <input type="checkbox" x-model="selected_all" class="border-gray-400" />
+          <span class="p-1 text-xs"
+                x-text="selected_all ? 'Unselect all' : 'Select all'"></span>
+        </div>
+        <form class="table text-left text-gray-500 table-fixed min-w-fit p-8 pt-0">
+          <div class="table-row-group" id="guests">{% include 'party/guest_list/partial_guest_list.html' %}</div>
+        </form>
+      </div>
+      <div hx-include="#guests"
+           hx-target="#guests"
+           class="bg-gray-50 grid grid-cols-2">
+        <button class="p-5 uppercase text-sm"
+                type="button"
+                hx-put="{% url 'party:partial_mark_not_attending' party_id %}">Not attending</button>
+        <button class="p-5 uppercase text-sm"
+                type="button"
+                hx-put="{% url 'party:partial_mark_attending' party_id %}">Attending</button>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
