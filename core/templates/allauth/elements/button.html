@@ -1,0 +1,9 @@
+{% load allauth %}
+
+{% comment %} djlint:off {% endcomment %}
+<{% if attrs.href %}a class="button secondaryAction" href="{{ attrs.href }}" {% else %}button class="primaryAction btn btn-primary"{% endif %}
+  {% if attrs.name %}name="{{ attrs.name }}" {% endif %}
+  {% if attrs.type %}type="{{ attrs.type }}" {% endif %}>
+  {% slot %}
+  {% endslot %}
+</{% if attrs.href %}a{% else %}button{% endif %}>

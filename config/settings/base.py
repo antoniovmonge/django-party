@@ -324,6 +324,7 @@ SOCIALACCOUNT_ADAPTER = "core.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {"signup": "core.users.forms.UserSocialSignupForm"}
 SOCIALACCOUNT_PROVIDERS = {"google": {"EMAIL_AUTHENTICATION": True}}
+SOCIALACCOUNT_AUTO_SIGNUP = False
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
