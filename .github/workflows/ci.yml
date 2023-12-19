@@ -42,6 +42,7 @@ jobs:
 
       - name: Set up environment file
         run: |
+          mkdir -p .envs/.external/
           echo "${{ secrets.SOCIAL_AUTH_FILE }}" > .envs/.external/.social-auth
 
       - name: Build Docker images
