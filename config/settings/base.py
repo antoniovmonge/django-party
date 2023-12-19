@@ -76,6 +76,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
@@ -322,6 +323,7 @@ ACCOUNT_FORMS = {"signup": "core.users.forms.UserSignupForm"}
 SOCIALACCOUNT_ADAPTER = "core.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {"signup": "core.users.forms.UserSocialSignupForm"}
+SOCIALACCOUNT_PROVIDERS = {"google": {"EMAIL_AUTHENTICATION": True}}
 
 # django-rest-framework
 # -------------------------------------------------------------------------------

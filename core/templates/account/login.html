@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 
 {% block head_title %}
   {% translate "Sign In" %}
@@ -49,4 +50,8 @@
        href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
     <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}</button>
   </form>
+  <div class="mt-14 mb-5">
+    <a href="{% provider_login_url 'google' %}"
+       class="btn-default bg-custom-red hover:bg-rose-400 p-4 mr-2 my-5">Login with Google</a>
+  </div>
 {% endblock inner %}
