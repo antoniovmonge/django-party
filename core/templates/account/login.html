@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 
 {% block head_title %}
   {% translate "Sign In" %}
@@ -12,7 +13,7 @@
   {% get_providers as socialaccount_providers %}
   {% if socialaccount_providers %}
     <p>
-      {% translate "Please sign in with one of your existing third core accounts:" %}
+      {% translate "Please sign in with one of your existing third party accounts:" %}
       {% if ACCOUNT_ALLOW_REGISTRATION %}
         {% blocktranslate trimmed %}
           Or, <a href="{{ signup_url }}">sign up</a>
@@ -49,4 +50,8 @@
        href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
     <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}</button>
   </form>
+  <div class="mt-14 mb-5">
+    <a href="{% provider_login_url 'google' %}"
+       class="btn-default bg-custom-red hover:bg-rose-400 p-4 mr-2 my-5">Login with Google</a>
+  </div>
 {% endblock inner %}

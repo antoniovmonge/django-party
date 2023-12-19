@@ -20,6 +20,7 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+      - ./.envs/.external/.social-auth
     ports:
       - '8000:8000'
     command: /start
@@ -35,22 +36,6 @@ services:
       - core_local_postgres_data_backups:/backups
     env_file:
       - ./.envs/.local/.postgres
-
-  docs:
-    image: core_local_docs
-    container_name: core_local_docs
-    build:
-      context: .
-      dockerfile: ./compose/local/docs/Dockerfile
-    env_file:
-      - ./.envs/.local/.django
-    volumes:
-      - ./docs:/docs:z
-      - ./config:/app/config:z
-      - ./core:/app/core:z
-    ports:
-      - '9000:9000'
-    command: /start-docs
 
   mailpit:
     image: axllent/mailpit:latest

@@ -43,11 +43,7 @@ start-django:
 
 clean-up:
 	docker rm -f core_local_django
-	docker rm -f core_local_docs
 	docker-compose -f local.yml run --rm --service-ports django
-
-stop-docs:
-	docker rm -f core_local_docs
 
 flush:
 	$(MANAGE) flush

@@ -19,6 +19,15 @@
          class="inline-block p-4 text-custom-powder-light font-dancing-script text-2xl">My parties</a>
       <a href="{% url 'party:page_new_party' %}"
          class="inline-block p-4 text-custom-powder-light">New party</a>
+      <a href="{% url 'home' %}"
+         class="inline-block p-4 text-custom-powder-light">Home</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'account_logout' %}"
+           class="inline-block p-4 text-custom-powder-light float-right">Logout</a>
+      {% else %}
+        <a href="{% url 'account_signup' %}"
+           class="inline-block p-4 text-custom-powder-light float-right">Login</a>
+      {% endif %}
     </nav>
     <main class="container p-5 m-auto">
       {% block content %}

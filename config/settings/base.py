@@ -76,6 +76,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
@@ -237,7 +238,7 @@ EMAIL_TIMEOUT = 5
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [("""Antonio Vilchez Monge""", "antonio-vilchez-monge@core.com")]
+ADMINS = [("""Antonio Vilchez Monge""", "antonio-vilchez-monge@django-party.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 # https://cookiecutter-django.readthedocs.io/en/latest/settings.html#other-environment-settings
@@ -322,6 +323,28 @@ ACCOUNT_FORMS = {"signup": "core.users.forms.UserSignupForm"}
 SOCIALACCOUNT_ADAPTER = "core.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {"signup": "core.users.forms.UserSocialSignupForm"}
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            # "provider": "google",
+            # "name": env("GOOGLE_APP_NAME"),
+            "client_id": env("GOOGLE_CLIENT_ID"),
+            "secret": env("GOOGLE_SECRET"),
+            "key": "",
+            # "sites": "django-party.com",
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "EMAIL_AUTHENTICATION": True,
+    }
+}
+# breakpoint()
+SOCIALACCOUNT_AUTO_SIGNUP = False
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
@@ -341,8 +364,8 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
 # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
 SPECTACULAR_SETTINGS = {
-    "TITLE": "core API",
-    "DESCRIPTION": "Documentation of API endpoints of core",
+    "TITLE": "Django-Party API",
+    "DESCRIPTION": "Documentation of API endpoints of Django-Party",
     "VERSION": "1.0.0",
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
 }
