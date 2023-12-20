@@ -279,3 +279,6 @@ core/media/
 .env
 .envs/*
 !.envs/.local/
+
+# vscode
+.vscode/
